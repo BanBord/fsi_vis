@@ -21,7 +21,6 @@ body {
 .continent-container {
     box-sizing: border-box;
     border: 1px solid #000;
-    background-color: seashell;
 }
 .country-rectangle {
     width: 100%;
@@ -39,6 +38,7 @@ body {
     height: 100%;
     width: 100%;
 }
+
 .cell {
     border: 1px solid #000;
 }
