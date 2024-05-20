@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color:rgb(189, 186, 186);
+    background-color:rgb(56, 56, 56);
     color:white;
     font-family: 'Fira Sans', sans-serif;
 }
@@ -15,7 +15,7 @@ body {
 #renderer{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(148, 148, 148, 0.781);
+    background-color: rgba(33, 33, 33, 0.781);
     position: relative;
 }
 .container {
@@ -30,6 +30,10 @@ body {
 .bar {
     display: inline-block;
     position: relative;
+}
+
+.highlight {
+    background-color: yellow; /* Or whatever color you want the highlight to be */
 }
 
 .cell {

@@ -6,12 +6,14 @@ let currentYearIndex = 0;
 
 let dataset = rankedAndGroupedDatasets[currentYearIndex];
 
+
+
 const continentColors = {
-    "Asia": '#516373',
-    "Americas": '#2A3740',
-    "Oceania": '#A3B4BF',
-    "Europe": '#D5E7F2',
-    "Africa": '#F2DEA0'
+    "Asia": '#E4C2F2',
+    "Americas": '#4A2B8C',
+    "Oceania": '#C4D929',
+    "Europe": '#F2CF1D',
+    "Africa": '#F28322'
 };
 
 
@@ -58,10 +60,6 @@ function drawWorldchart(datasets) {
 
     const barWidth = 2800 / (sortedData.length * 2);
 
-    // console.log("length", sortedData.length)
-
-    // console.log("barWidth", barWidth);
-
     // note: the following code itterates over the sorted data and creates a bar for each country
     for (let index in sortedData) {
         const { Rank, continent, Country } = sortedData[index];
@@ -73,6 +71,7 @@ function drawWorldchart(datasets) {
 
         let bar = $('<div></div>');
         bar.addClass('bar');
+        bar.data('country', Country);
 
         bar.css({
             'height': barHeight,
@@ -82,12 +81,23 @@ function drawWorldchart(datasets) {
             'background-color': continentColors[continent]
         });
 
+        // bar.hover(
+        //     function () {
+        //         $('.bar').not(this).css('opacity', 0.2);
+        //     },
+        //     function () {
+        //         $('.bar').css('opacity', 1);
+        //     }
+        // );
         bar.hover(
             function () {
-                $('.bar').not(this).css('opacity', 0.2);
+                let country = $(this).data('country');
+                $('.bar, .cell').not(this).filter(function() {
+                    return $(this).data('country') !== country;
+                }).css('opacity', 0.2);
             },
             function () {
-                $('.bar').css('opacity', 1);
+                $('.bar, .cell').css('opacity', 1);
             }
         );
 
@@ -100,7 +110,6 @@ function drawWorldchart(datasets) {
                 'left': hover.pageX + 10,
                 'top': hover.pageY + 50
             });
-
             // console.log('Hover active');
             // console.log(Country);
         });
@@ -108,6 +117,7 @@ function drawWorldchart(datasets) {
         bar.mouseout(function () {
             bar.removeClass('hover');
             $('#hoverLabel').text('');
+
         });
 
 
@@ -116,8 +126,6 @@ function drawWorldchart(datasets) {
     }
 }
 
-
-// console.log("außerhalb");
 function drawContinentChart(rankedAndGroupedDatasets) {
     const containerWidth = 500;
     const containerHeight = 800;
@@ -125,10 +133,6 @@ function drawContinentChart(rankedAndGroupedDatasets) {
     let i = 0;
 
     // note: doppelt gemoppelte schleife continer class hier / Raus bauen rein bauen
-    // for (let year in rankedAndGroupedDatasets) { //note: this iterates over the years
-    // let dataset = rankedAndGroupedDatasets[1]; // note: this selects a dataset by year
-    // console.log("Year", currentYearIndex)
-    // console.log(rankedAndGroupedDatasets)
 
     let dataset = rankedAndGroupedDatasets;
 
@@ -171,9 +175,14 @@ function drawContinentChart(rankedAndGroupedDatasets) {
                 if (countries[countryIndex]) { // If there's a country for this cell
                     let country = countries[countryIndex];
                     cell.text(country.Country);
+                    cell.data('country', country.Country);
+
+
                     cell.css('background-color', continentColors[continent]);
+
                     let heightPercentage = (country.Total / maxTotal) * 100;
                     cell.css('height', `${heightPercentage}%`);
+
                     countryIndex++;
 
                     cell.mouseover(function (hover) {
@@ -190,6 +199,18 @@ function drawContinentChart(rankedAndGroupedDatasets) {
                         $('#hoverLabel').text('');
                     });
                 }
+
+                cell.hover(
+                    function () {
+                        let country = $(this).data('country');
+                        $('.bar, .cell').not(this).filter(function() {
+                            return $(this).data('country') !== country;
+                        }).css('opacity', 0.2);
+                    },
+                    function () {
+                        $('.bar, .cell').css('opacity', 1);
+                    }
+                );
 
 
 
