@@ -50,10 +50,10 @@ Cocos (Keeling) Islands;Oceania
 Colombia;Americas
 Comoros;Africa
 Congo;Africa
-Congo;ISO 3166-2:CD
+Congo Democratic Republic;Africa
 Cook Islands;Oceania
 Costa Rica;Americas
-Côte d'Ivoire;Africa
+Cote d'Ivoire;Africa
 Croatia;Europe
 Cuba;Americas
 Curaçao;Americas
@@ -144,7 +144,7 @@ Mauritius;Africa
 Mayotte;Africa
 Mexico;Americas
 Micronesia (Federated States of);Oceania
-Moldova;ISO 3166-2:MD
+Moldova;Europe
 Monaco;Europe
 Mongolia;Asia
 Montenegro;Europe
@@ -215,10 +215,10 @@ Suriname;Americas
 Svalbard and Jan Mayen;Europe
 Sweden;Europe
 Switzerland;Europe
-Syrian Arab Republic;Asia
+Syria;Asia
 Taiwan;ISO 3166-2:TW
 Tajikistan;Asia
-Tanzania;ISO 3166-2:TZ
+Tanzania;Africa
 Thailand;Asia
 Timor-Leste;Asia
 Togo;Africa
@@ -233,8 +233,8 @@ Tuvalu;Oceania
 Uganda;Africa
 Ukraine;Europe
 United Arab Emirates;Asia
-United Kingdom of Great Britain and Northern Ireland;Europe
-United States of America;Americas
+United Kingdom;Europe
+United States;Americas
 United States Minor Outlying Islands;Oceania
 Uruguay;Americas
 Uzbekistan;Asia

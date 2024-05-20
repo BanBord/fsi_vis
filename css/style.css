@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color:rgb(37, 36, 36);
+    background-color:rgb(189, 186, 186);
     color:white;
     font-family: 'Fira Sans', sans-serif;
 }
@@ -15,16 +15,15 @@ body {
 #renderer{
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(148, 148, 148, 0.781);
     position: relative;
 }
-.continent-container {
+.container {
     box-sizing: border-box;
-    border: 1px solid #000;
-}
-.country-rectangle {
-    width: 100%;
-}
+    border: none;
+    position: absolute;
+}   
+
 .hover {
     background-color: gray;
 }
@@ -32,15 +31,15 @@ body {
     display: inline-block;
     position: relative;
 }
-.table {
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    height: 100%;
-    width: 100%;
-}
 
 .cell {
-    border: 1px solid #000;
+    border: 2px solid black;
+}
+
+.table {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);    
+    
 }
 
 #hoverLabel {
