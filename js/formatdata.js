@@ -65,12 +65,3 @@ let rankedAndGroupedDatasets = datasets.map(dataset => {
 
 
 
-
-
-
-// console.log("ranked", rankedAndGroupedDatasets);
-// console.log("ranked", rankedAndGroupedDatasets[0]);
-// console.log("length", rankedAndGroupedDatasets.length);
-// console.log(`Year ${i + 1}, ${continent}: ${numCountries} countries`);
-// console.log("properties", Object.keys(rankedAndGroupedDatasets));
-// console.log("values", Object.values(rankedAndGroupedDatasets));
