@@ -18,8 +18,8 @@ mergedData.forEach((country) => {
 
     dataPerYear[year].push(country);
 });
-// console.log(mergedData);
-// console.log(dataPerYear);
+// // console.log(mergedData);
+// // console.log(dataPerYear);
 // note: following code creates a new array for each year 
 
 const data2006 = dataPerYear[2006];
@@ -44,7 +44,7 @@ const data2023 = dataPerYear[2023];
 // note: following code creates an array with all the years
 
 let datasets = [data2006, data2007, data2008, data2009, data2010, data2011, data2012, data2013, data2014, data2015, data2016, data2017, data2018, data2019, data2020, data2021, data2022, data2023];
-console.log("datasets", datasets);
+// console.log("datasets", datasets);
 
 let rankedAndGroupedDatasets = datasets.map(dataset => {
     // Sort the countries in the dataset based on the Rank property

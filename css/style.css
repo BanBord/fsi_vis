@@ -69,3 +69,9 @@ body {
 #hoverLabel.active, #clickLabel.active  {
     display: block;
 }
+
+.block {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #000;
+  }
