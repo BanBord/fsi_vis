@@ -6,16 +6,16 @@ let currentYearIndex = 0;
 
 let dataset = rankedAndGroupedDatasets[currentYearIndex];
 
-const data1 = [];
-const elementsPerRow1 = [];
+let data1 = [];
+let elementsPerRow1 = [];
 
 
 const continentColors = {
-    "Asia": '#FAD236',
-    "Americas": '#155B20',
-    "Oceania": '#BD271A',
-    "Europe": '#2F98AD',
-    "Africa": '#661B7A'
+    "Asia": '#16F28B',
+    "Americas": '#F2CB05',
+    "Oceania": '#F2AB27',
+    "Europe": '#D96236',
+    "Africa": '#8C2E26'
 };
 
 const signalColors = {
@@ -38,7 +38,7 @@ $(function () {
     let continentIndex = 0;
     const numberOfContinents = Object.keys(data1).length;
     console.log("numberOfContinents", numberOfContinents);
-    const continentChartWidth = stageWidth / numberOfContinents; 
+    const continentChartWidth = stageWidth / numberOfContinents;
 
     for (continent in data1) {
         const continentData = data1[continent];
@@ -50,18 +50,18 @@ $(function () {
     // note: the following code creates a button that changes the year
     $('#yearButton').click(function () {
         currentDatasetIndex = (currentDatasetIndex + 1) % datasets.length;
-
-        $('#yearLabel').text('Year: ' + datasets[currentDatasetIndex][0].Year);
-
-        stage.empty();
-
-        drawWorldchart(datasets[currentDatasetIndex])
-
         currentYearIndex++; // Move to the next year
         if (currentYearIndex >= rankedAndGroupedDatasets.length) { // If we've gone past the last year, loop back to the first year
             currentYearIndex = 0;
         }
 
+        data1 = drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
+        elementsPerRow1 = drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
+
+        $('#yearLabel').text('Year: ' + datasets[currentDatasetIndex][0].Year);
+        stage.empty();
+
+        drawWorldchart(datasets[currentDatasetIndex])
         drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
 
     });
@@ -84,13 +84,6 @@ function drawWorldchart(datasets) {
     const rankMin = gmynd.dataMin(sortedData, 'Rank')
     const rankMax = gmynd.dataMax(sortedData, 'Rank')
 
-    // // console.log("rankMin", rankMin)
-    // // console.log("rankMax", rankMax)
-
-    const maxRank = sortedData.length;
-
-
-
     // note: the following code itterates over the sorted data and creates a bar for each country
     for (let index in sortedData) {
         const { Rank, continent, Country } = sortedData[index];
@@ -103,15 +96,18 @@ function drawWorldchart(datasets) {
         bar.addClass('bar');
         bar.data('country', Country);
 
-        const rankPercentage = gmynd.map(Rank, rankMin, rankMax, 95, 5)
+        const rankPercentageA = gmynd.map(Rank, rankMin, rankMax, 20, 0)
 
+        let colorScale = chroma.scale([continentColors[continent], 'black']).mode('lab');
+        let color = colorScale(rankPercentageA / 100).hex();
 
         bar.css({
             'height': barHeight,
             'width': barWidth,
             'left': xPos,
             'top': yPos,
-            'background': `linear-gradient(90deg, ${continentColors[continent]} 0%, ${continentColors[continent]} ${rankPercentage}%, ${signalColors[continent]} 100%`
+            // 'background': `linear-gradient(90deg, ${continentColors[continent]} 0%, ${continentColors[continent]} ${rankPercentage}%, ${signalColors[continent]} 100%`
+            'background': color
         });
 
 
@@ -193,7 +189,7 @@ function drawContinentChart(rankedAndGroupedDatasets) {
 }
 
 function createTreeMap(data, elementsPerRow, treemapX, treemapY, treemapWidth) {
-    const heightFactor = 70; // Adjusts the height of the rows
+    const heightFactor = 150; // Adjusts the height of the rows
     // // console.log("inside")
 
     let actY = treemapY;
@@ -218,6 +214,12 @@ function createTreeMap(data, elementsPerRow, treemapX, treemapY, treemapWidth) {
             // Calculate the width of the block
             const blockWidth = (value / total) * treemapWidth;
             // console.log("blockWidth:", blockWidth);
+            
+            
+            const rankPercentageB = gmynd.map(value, 0, total, 100, -100);
+
+            let colorScale = chroma.scale(['black',continentColors[continent]]).mode('lab');
+            let color = colorScale(rankPercentageB / 100).hex();
 
             // Create the block and append it to the renderer
             const block = $("<div class='block'></div>");
@@ -226,6 +228,9 @@ function createTreeMap(data, elementsPerRow, treemapX, treemapY, treemapWidth) {
                 height: rowHeight + "px",
                 left: actX + "px",
                 top: actY + "px",
+                // background: `linear-gradient(90deg, ${continentColors[continent]} 0%, ${continentColors[continent]} ${rankPercentage}%, ${signalColors[continent]} 100%`
+                background: color
+
             });
             stage.append(block);
 
