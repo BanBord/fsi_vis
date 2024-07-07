@@ -1,0 +1,247 @@
+/** @format */
+
+#saButton {
+  position: absolute;
+  left: 30px;
+  top: 150px;
+}
+#saButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #00009F;
+}
+
+#feButton {
+  position: absolute;
+  left: 200px;
+  top: 150px;
+}
+#feButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #3265cb;
+}
+
+#ggButton {
+  position: absolute;
+  left: 400px;
+  top: 150px;
+}
+#ggButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #99ccff;
+}
+
+#ecButton {
+  position: absolute;
+  left: 600px;
+  top: 150px;
+}
+#ecButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #cc6600;
+}
+
+#eiButton {
+  position: absolute;
+  left: 800px;
+  top: 150px;
+}
+#eiButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #fe9800;
+}
+
+#hfButton {
+  position: absolute;
+  left: 1000px;
+  top: 150px;
+}
+#hfButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #ffcc66;
+}
+
+#slButton {
+  position: absolute;
+  left: 30px;
+  top: 180px;
+}
+#slButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #009999;
+}
+
+#psButton {
+  position: absolute;
+  left: 200px;
+  top: 180px;
+}
+#psButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #33cccc;
+}
+
+#hrButton {
+  position: absolute;
+  left: 400px;
+  top: 180px;
+}
+#hrButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #99fecc;
+}
+
+#dpButton {
+  position: absolute;
+  left: 600px;
+  top: 180px;
+}
+#dpButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #800080;
+}
+
+#riButton {
+  position: absolute;
+  left: 800px;
+  top: 180px;
+}
+#riButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #cc0099;
+}
+
+#exButton {
+  position: absolute;
+  left: 1000px;
+  top: 180px;
+}
+#exButton::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #E365E6;
+}
+
+
+#showEurope {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+}
+#showEurope::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #D96236;
+}
+
+#showAsia {
+  position: absolute;
+  left: 30%;
+  top: 100px;
+}
+#showAsia::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #BC04BF;
+}
+
+#showAfrica {
+  position: absolute;
+  left: 60%;
+  top: 100px;
+}
+#showAfrica::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #16F28B;
+}
+
+#showAmericas {
+  position: absolute;
+  left: 40%;
+  top: 100px;
+}
+#showAmericas::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #F2CB05;
+}
+
+#showOceania {
+  position: absolute;
+  left: 70%;
+  top: 100px;
+}
+#showOceania::before {
+  content: ""; /* Unicode character for a bullet/dot */
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #F21616;
+}
+
+#showAll {
+  position: absolute;
+  right: 200px;
+  top: 100px;
+  font-weight: bold;
+}

@@ -25,7 +25,7 @@ Belize;Americas
 Benin;Africa
 Bermuda;Americas
 Bhutan;Asia
-Bolivia (Plurinational State of);Americas
+Bolivia;Americas
 Bonaire;ISO 3166-2:BQ
 Bosnia and Herzegovina;Europe
 Botswana;Africa
@@ -36,7 +36,7 @@ Brunei Darussalam;Asia
 Bulgaria;Europe
 Burkina Faso;Africa
 Burundi;Africa
-Cabo Verde;Africa
+Cape Verde;Africa
 Cambodia;Asia
 Cameroon;Africa
 Canada;Americas
@@ -50,7 +50,7 @@ Cocos (Keeling) Islands;Oceania
 Colombia;Americas
 Comoros;Africa
 Congo;Africa
-Congo Democratic Republic;Africa
+Congo Republic;Africa
 Cook Islands;Oceania
 Costa Rica;Americas
 Cote d'Ivoire;Africa
@@ -69,7 +69,7 @@ El Salvador;Americas
 Equatorial Guinea;Africa
 Eritrea;Africa
 Estonia;Europe
-Eswatini;Africa
+Swaziland;Africa
 Ethiopia;Africa
 Falkland Islands (Malvinas);Americas
 Faroe Islands;Europe
@@ -93,7 +93,7 @@ Guam;Oceania
 Guatemala;Americas
 Guernsey;Europe
 Guinea;Africa
-Guinea-Bissau;Africa
+Guinea Bissau;Africa
 Guyana;Americas
 Haiti;Americas
 Heard Island and McDonald Islands;Oceania
@@ -104,11 +104,11 @@ Hungary;Europe
 Iceland;Europe
 India;Asia
 Indonesia;Asia
-Iran (Islamic Republic of);Asia
+Iran;Asia
 Iraq;Asia
 Ireland;Europe
 Isle of Man;Europe
-Israel;Asia
+Israel and West Bank;Asia
 Italy;Europe
 Jamaica;Americas
 Japan;Asia
@@ -117,11 +117,11 @@ Jordan;Asia
 Kazakhstan;Asia
 Kenya;Africa
 Kiribati;Oceania
-Korea (Democratic People's Republic of);Asia
-Korea;ISO 3166-2:KR
+North South Korea;Asia
+South Korea;Asia
 Kuwait;Asia
 Kyrgyzstan;Asia
-Lao People's Democratic Republic;Asia
+Laos;Asia
 Latvia;Europe
 Lebanon;Asia
 Lesotho;Africa
@@ -143,7 +143,7 @@ Mauritania;Africa
 Mauritius;Africa
 Mayotte;Africa
 Mexico;Americas
-Micronesia (Federated States of);Oceania
+Micronesia;Oceania
 Moldova;Europe
 Monaco;Europe
 Mongolia;Asia
@@ -163,7 +163,7 @@ Niger;Africa
 Nigeria;Africa
 Niue;Oceania
 Norfolk Island;Oceania
-North Macedonia;Europe
+Macedonia;Europe
 Northern Mariana Islands;Oceania
 Norway;Europe
 Oman;Asia
@@ -182,10 +182,10 @@ Puerto Rico;Americas
 Qatar;Asia
 Réunion;Africa
 Romania;Europe
-Russian Federation;Europe
+Russia;Europe
 Rwanda;Africa
 Saint Barthélemy;Americas
-Saint Helena;ISO 3166-2:SH
+Saint Helena;Africa
 Saint Kitts and Nevis;Americas
 Saint Lucia;Americas
 Saint Martin (French part);Americas
@@ -216,7 +216,7 @@ Svalbard and Jan Mayen;Europe
 Sweden;Europe
 Switzerland;Europe
 Syria;Asia
-Taiwan;ISO 3166-2:TW
+Taiwan;Asia
 Tajikistan;Asia
 Tanzania;Africa
 Thailand;Asia
@@ -239,8 +239,8 @@ United States Minor Outlying Islands;Oceania
 Uruguay;Americas
 Uzbekistan;Asia
 Vanuatu;Oceania
-Venezuela (Bolivarian Republic of);Americas
-Viet Nam;Asia
+Venezuela;Americas
+Vietnam;Asia
 Virgin Islands (British);Americas
 Virgin Islands (U.S.);Americas
 Wallis and Futuna;Oceania

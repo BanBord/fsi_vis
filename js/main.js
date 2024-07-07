@@ -1,243 +1,519 @@
 let stage;
 let stageHeight;
 let stageWidth;
+
 let currentDatasetIndex = 0;
 let currentYearIndex = 0;
 
-let dataset = rankedAndGroupedDatasets[currentYearIndex];
+let countryPropertyDivs = {};
+let propertyLeftPositions = {};
 
-let data1 = [];
-let elementsPerRow1 = [];
+let continents = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
+let properties = [
+  "Security Apparatus",
+  "Factionalized Elites",
+  "Group Grievance",
+  "Economy",
+  "Economic Inequality",
+  "Human Flight and Brain Drain",
+  "State Legitimacy",
+  "Public Services",
+  "Human Rights",
+  "Demographic Pressures",
+  "Refugees and IDPs",
+  "External Intervention",
+];
 
 const continentColors = {
-    "Asia": '#16F28B',
-    "Americas": '#F2CB05',
-    "Oceania": '#F2AB27',
-    "Europe": '#D96236',
-    "Africa": '#8C2E26'
+  Asia: "#BC04BF",
+  Americas: "#F2CB05",
+  Oceania: "#F21616",
+  Europe: "#D96236",
+  Africa: "#16F28B",
 };
 
-const signalColors = {
-    "Asia": '#FEF6D7',
-    "Americas": '#B9CEBC',
-    "Oceania": '#EBBEBA',
-    "Europe": '#C1E0E6',
-    "Africa": '#D1BBD7'
+const colorMapping = {
+  "Security Apparatus": "#00009F",
+  "Demographic Pressures": "#800080",
+  "Economic Inequality": "#FE9800",
+  "Economy": "#CC6600",
+  "External Intervention": "#E365E6",
+  "Factionalized Elites": "#3265CB",
+  "Group Grievance": "#99CCFF",
+  "Human Flight and Brain Drain": "#FFCC66",
+  "Human Rights": "#99FECC",
+  "State Legitimacy": "#009999",
+  "Public Services": "#33CCCC",
+  "Refugees and IDPs": "#CC0099",
+};
+
+const propertyGroups = {
+  Cohesion: ["Security Apparatus", "Factionalized Elites", "Group Grievance"],
+  Economy: ["Economy", "Economic Inequality", "Human Flight and Brain Drain"],
+  Governance: ["Human Rights", "State Legitimacy", "Public Services"],
+  Society: ["Demographic Pressures", "Refugees and IDPs", "External Intervention"],
 };
 
 const paddingLeft = 30;
 
+let filteredData;
+
+// ///////////////////////////////////////////////////////////////////////
+// renderer events and button logic
+// ///////////////////////////////////////////////////////////////////////
+
 $(function () {
-    stage = $('#renderer')
-    stageHeight = stage.innerHeight();
-    stageWidth = stage.innerWidth();
-    drawWorldchart(datasets[currentDatasetIndex]);
-    drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
+  $("#renderer").addClass("allChart");
 
-    let continentIndex = 0;
-    const numberOfContinents = Object.keys(data1).length;
-    console.log("numberOfContinents", numberOfContinents);
-    const continentChartWidth = stageWidth / numberOfContinents;
+  stage = $("#renderer");
+  stageHeight = stage.innerHeight();
+  stageWidth = stage.innerWidth();
 
-    for (continent in data1) {
-        const continentData = data1[continent];
-        let posX = continentIndex * continentChartWidth;
-        createTreeMap(continentData, elementsPerRow1[continentIndex], posX, 500, (continentChartWidth / 2));
-        continentIndex++;
+  createDivsForChart();
+
+  $("#sortByCohesion").click(function () {
+    console.log("sort by Cohesion");
+    showGroup("Cohesion");
+  });
+
+  $("#sortByEconomic").click(function () {
+    console.log("sort by Economy");
+    showGroup("Economy");
+  });
+
+  $("#sortByPolitical").click(function () {
+    console.log("sort by Governance");
+    showGroup("Governance");
+  });
+
+  $("#sortBySocial").click(function () {
+    console.log("sort by Society");
+    showGroup("Society");
+  });
+
+  // drawRankChart(datasets[currentDatasetIndex]);
+  if ($("#renderer").hasClass("worldChart")) {
+    drawRankChart(datasets[currentDatasetIndex]);
+  } else if ($("#renderer").hasClass("allChart")) {
+    drawPropertyCharts(datasets[currentDatasetIndex]);
+  }
+
+
+  // note: the following code creates a dropdown that changes the year
+  for (let i = 2006; i <= 2023; i++) {
+    $("#yearDropdown").append(`<option value="${i - 2006}">${i}</option>`);
+  }
+
+  $('#yearDropdown').change(function () {
+    // Update currentDatasetIndex to the selected year's index
+    currentDatasetIndex = parseInt($(this).val());
+    currentYearIndex = parseInt($(this).val());
+
+    console.log("Year changed to:", datasets[currentDatasetIndex][0].Year);
+    console.log("Current dataset index:", currentDatasetIndex);
+    console.log("Current year index:", currentYearIndex);
+
+    if ($("#renderer").hasClass("worldChart")) {
+      drawRankChart(datasets[currentDatasetIndex]);
+    } else if ($("#renderer").hasClass("allChart")) {
+      drawPropertyCharts(datasets[currentDatasetIndex]);
     }
 
-    // note: the following code creates a button that changes the year
-    $('#yearButton').click(function () {
-        currentDatasetIndex = (currentDatasetIndex + 1) % datasets.length;
-        currentYearIndex++; // Move to the next year
-        if (currentYearIndex >= rankedAndGroupedDatasets.length) { // If we've gone past the last year, loop back to the first year
-            currentYearIndex = 0;
-        }
 
-        data1 = drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
-        elementsPerRow1 = drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
+  });
 
-        $('#yearLabel').text('Year: ' + datasets[currentDatasetIndex][0].Year);
-        stage.empty();
 
-        drawWorldchart(datasets[currentDatasetIndex])
-        drawContinentChart(rankedAndGroupedDatasets[currentYearIndex]);
+  $("#chartSwitchButton").click(function () {
+    $(".property-rectangle").remove();
+    $(".bar").remove();
 
-    });
+
+    if ($("#renderer").hasClass("worldChart")) {
+      $("#renderer").removeClass("worldChart").addClass("allChart");
+      $('.buttonstyleB').hide();
+      $('.buttonstyle').show();
+      $(".year-label").hide();
+      $(".country-label").hide();
+      $(".rank-label").hide();
+      createDivsForChart();
+      drawPropertyCharts(datasets[currentDatasetIndex]);
+    } else if ($("#renderer").hasClass("allChart")) {
+      $("#renderer").removeClass("allChart").addClass("worldChart");
+      $('.buttonstyle').hide();
+      $('.buttonstyleB').show();
+      drawRankChart(datasets[currentDatasetIndex]);
+    }
+
+    console.log("Chart switched");
+    console.log("Current class:", $("#renderer").attr("class"));
+
+  });
+
+  $("#resetButton").click(function () {
+    $(".property-rectangle").remove();
+    $(".bar").remove();
+    $(".property-label").remove();
+    $(".country-label").remove();
+    $(".rank-label").remove();
+
+    if ($("#renderer").hasClass("worldChart")) {
+      drawRankChart(datasets[currentDatasetIndex]);
+    } else if ($("#renderer").hasClass("allChart")) {
+      createDivsForChart();
+      drawPropertyCharts(datasets[currentDatasetIndex]);
+    }
+  });
+
 });
 
-function drawWorldchart(datasets) {
+// ///////////////////////////////////////////////////////////////////////
+// hover logic for property rectangles with tooltip
+// ///////////////////////////////////////////////////////////////////////
 
-    const barHeight = 80;
-    let yPos = 150;
+$("#renderer").on("mouseenter", ".property-rectangle", function (event) {
+  const countryName = $(this).data("country");
+  const propertyName = $(this).data("property");
+  // Assuming you have this data attribute
+  let actualValue;
+  datasets[currentDatasetIndex].forEach(data => {
+    if (data.Country === countryName) {
+      actualValue = data[propertyName];
+    }
+  });
 
-
-    // // // console.log(sortedData)
-
-    // note: the following code sorts the data by rank
-    const sortedData = datasets.sort((low, high) => low.Rank - high.Rank);
-    // // // // console.log("sorted", sortedData);
-
-    const barWidth = ((stageWidth - paddingLeft * 2) / sortedData.length / 2);
-
-    const rankMin = gmynd.dataMin(sortedData, 'Rank')
-    const rankMax = gmynd.dataMax(sortedData, 'Rank')
-
-    // note: the following code itterates over the sorted data and creates a bar for each country
-    for (let index in sortedData) {
-        const { Rank, continent, Country } = sortedData[index];
-
-        // Use the Rank value to determine the xPos
-        // // console.log(index);
-        let xPos = (index * barWidth * 2) + 30 + barWidth / 2;
-
-        let bar = $('<div></div>');
-        bar.addClass('bar');
-        bar.data('country', Country);
-
-        const rankPercentageA = gmynd.map(Rank, rankMin, rankMax, 20, 0)
-
-        let colorScale = chroma.scale([continentColors[continent], 'black']).mode('lab');
-        let color = colorScale(rankPercentageA / 100).hex();
-
-        bar.css({
-            'height': barHeight,
-            'width': barWidth,
-            'left': xPos,
-            'top': yPos,
-            // 'background': `linear-gradient(90deg, ${continentColors[continent]} 0%, ${continentColors[continent]} ${rankPercentage}%, ${signalColors[continent]} 100%`
-            'background': color
-        });
+  $("#tooltip").text(`${countryName}, ${propertyName}: ${actualValue}`)
+    .css({ top: event.pageY + 5 + "px", left: event.pageX + 5 + "px" })
+    .show();
+}).on("mouseleave", ".property-rectangle", function () {
+  $("#tooltip").hide();
+}).on("mousemove", ".property-rectangle", function (event) {
+  $("#tooltip").css({ top: event.pageY + 5 + "px", left: event.pageX + 5 + "px" });
+});
 
 
-        // map the gradinet to the bar
-        // note: the following code checks if there is a matching country in the drawWorldChart function 
-        bar.hover(
-            function () {
-                let country = $(this).data('country');
-                $('.bar, .cell').not(this).filter(function () {
-                    return $(this).data('country') !== country;
-                }).css('opacity', 0.2);
-            },
-            function () {
-                $('.bar, .cell').css('opacity', 1);
-            }
-        );
+// ///////////////////////////////////////////////////////////////////////
+// function for creating a bar chart for each country in second screen
+// ///////////////////////////////////////////////////////////////////////
+
+function drawRankChart() {
+  // console.log("datasets", dataPerYear);
+
+  // const dataPerYearArray = Object.entries(dataPerYear)
+  const dataPerYearArray = Object.entries(dataPerYear).filter(([yearKey, _]) => yearKey !== "2006");
+  const yearWidth = stageWidth / dataPerYearArray.length;
 
 
-        bar.mouseover(function (hover) {
-            bar.addClass('hover')
-            $('#hoverLabel').text(Country + ', Rank: ' + Rank)
+  dataPerYearArray.forEach(([yearKey, yearData], index) => {
+    // console.log(index, yearKey, yearData)
 
-            $('#hoverLabel').css({
-                'left': hover.pageX + 10,
-                'top': hover.pageY + 50
+    yearData.sort((a, b) => a.Rank - b.Rank);
+
+    const xPos = yearWidth * index;
+
+
+    yearData.forEach((country) => {
+      const { Rank, continent, Country } = country;
+      // YPos für Country
+      const barHeight = ((stageHeight - 400) - paddingLeft * 2) / yearData.length / 2;
+      const yPos = (Rank * barHeight * 2 + paddingLeft + barHeight / 2) + 150;
+
+      let bar = $("<div></div>");
+      bar.addClass("bar");
+      bar.data("country", Country);
+      bar.data("rank", Rank);
+      bar.data("continent", continent);
+
+      bar.css({
+        height: barHeight,
+        width: yearWidth - 50, // Adjust width as needed
+        left: xPos + 10, // Add some padding
+        top: yPos,
+        background: continentColors[continent],
+      });
+
+      bar.click(function () {
+        const selectedCountry = $(this).data("country");
+
+        $(".rank-label").remove();
+
+        // Initialize a variable to track the maximum top position of the bars
+        let minTopPosition = stageHeight;
+
+        $(".bar").each(function () {
+          const currentTop = $(this).position().top;
+          if (currentTop < minTopPosition) {
+            minTopPosition = currentTop; // Update minTopPosition with the smallest value
+          }
+
+          if ($(this).data("country") === selectedCountry) {
+            $(this).css({
+              background: $(this).data("color"),
+              opacity: 1
             });
-            // // // // console.log('Hover active');
-            // // // // console.log(Country);
+          } else {
+            $(this).css({
+              background: 'gray',
+              opacity: 0.5
+            });
+          }
         });
 
-        bar.mouseout(function () {
-            bar.removeClass('hover');
-            $('#hoverLabel').text('');
+        const labelTopPosition = minTopPosition - 20;
 
+        $(".country-label").remove();
+
+        // Create and append the country name label
+        const countryLabel = $("<div class='country-label'>" + selectedCountry + "</div>").css({
+          position: 'absolute',
+          top: labelTopPosition - 50 + "px", // Adjust so it's below the rank labels
+          left: 10 + "px",
+          color: 'white' // Position at the top left of the chart area
         });
 
+        $("#renderer").append(countryLabel);
+        console.log("selectedCountry", selectedCountry);
 
+        // Create and append labels for all bars with the selected country
+        $(".bar").each(function () {
+          if ($(this).data("country") === selectedCountry) {
+            const rank = $(this).data("rank"); // Retrieve the Rank value
 
-        stage.append(bar);
-    }
-}
+            const label = $("<div class='rank-label'>" + "Rank " + "#" + rank + "</div>").css({
+              position: 'absolute',
+              top: (labelTopPosition) + "px", // Use the calculated position
+              left: $(this).position().left + "px",
+              width: $(this).width() + "px",
+              // Ensure the label is above other elements
+            });
+            console.log("label", label);
 
-function drawContinentChart(rankedAndGroupedDatasets) {
-    let rankMax = {};
-    let rankMin = {};
-
-    for (let continent in rankedAndGroupedDatasets) {
-        let ranks = rankedAndGroupedDatasets[continent].map(country => country.Rank);
-        rankMax[continent] = Math.max(...ranks);
-        rankMin[continent] = Math.min(...ranks);
-    }
-
-    // // console.log("A", rankMax); // Logs the maximum rank for each continent
-    // // console.log("B", rankMin);
-
-    let continents = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
-
-    // // console.log("Datenset", rankedAndGroupedDatasets)
-
-    continents.forEach(continent => {
-        let countries = rankedAndGroupedDatasets[continent];
-        data1[continent] = [];
-
-        countries.forEach((country) => {
-            data1[continent].push(Math.floor(gmynd.map(country.Rank, rankMin[continent], rankMax[continent], 100, 7)))
+            $(this).parent().append(label);
+          }
         });
-        elementsPerRow1.push(arrayalgo(countries.length));
+      });
+
+      stage.append(bar);
     });
 
-    // for (let continent in rankedAndGroupedDatasets) {
-    //     elementsPerRow1.push(arrayalgo(rankedAndGroupedDatasets[continent].length));
-    // }
-    console.log("rankedAndGroupedDatasets", rankedAndGroupedDatasets)
-    console.log("data1", data1);
-    console.log("elementsPerRow1", elementsPerRow1);
-    console.log("data1", data1[continents[4]]);
-    console.log("elementsPerRow1", elementsPerRow1[4]);
+    let yearLabel = $("<div class='year-label'>" + yearKey + "</div>").css({
+      position: 'absolute',
+      top: stageHeight - 70 + "px", // Position the year label at the bottom
+      left: (xPos) + 10, // Align with the year's column
+      width: yearWidth + "px",
+      textAlign: 'left',
+      color: 'white'
+    });
+
+    stage.append(yearLabel);
+
+  });
 
 }
 
-function createTreeMap(data, elementsPerRow, treemapX, treemapY, treemapWidth) {
-    const heightFactor = 150; // Adjusts the height of the rows
-    // // console.log("inside")
 
-    let actY = treemapY;
-    let actIndex = 0;
-    // // console.log("length", data[continent].length);
+// ///////////////////////////////////////////////////////////////////////
+// function for filtering the bars for the continents
+// ///////////////////////////////////////////////////////////////////////
 
-    elementsPerRow.forEach((count) => {
-        // console.log("data", data);
-        // Get the number of elements from the data array
-        const elements = data.slice(actIndex, actIndex + count);
-        // console.log('elements', elements);
-        // Sum the elements to get the total value
-        const total = elements.reduce((a, b) => a + b, 0);
-        // console.log("total:", total);
-        // Calculate the height of the row
-        const rowHeight = (total / treemapWidth) * heightFactor;
-        // console.log("rowHeight:", rowHeight);
+function filterContinent(continent) {
+  console.log("filterContinent");
+  $(".bar").each(function () {
+    const barContinent = $(this).data("continent");
+    // console.log("barContinent", barContinent);
 
-        // Create the row
-        let actX = treemapX;
-        elements.forEach((value) => {
-            // Calculate the width of the block
-            const blockWidth = (value / total) * treemapWidth;
-            // console.log("blockWidth:", blockWidth);
-            
-            
-            const rankPercentageB = gmynd.map(value, 0, total, 100, -100);
+    if (continent === "showAll" || barContinent === continent) {
+      console.log("barContinent", barContinent);
+      const originalColor = continentColors[barContinent];
+      $(this).css({
+        background: originalColor,
+        opacity: 1,
+      });
+    } else {
+      $(this).css({
+        background: "gray",
+        opacity: 0.5,
+      });
+    }
+  });
+}
 
-            let colorScale = chroma.scale(['black',continentColors[continent]]).mode('lab');
-            let color = colorScale(rankPercentageB / 100).hex();
+$(document).ready(function () {
+  $("button[data-continent]").click(function () {
+    console.log("button clicked");
+    const continent = $(this).data("continent");
+    console.log("continent", continent);
+    filterContinent(continent);
+  });
+});
 
-            // Create the block and append it to the renderer
-            const block = $("<div class='block'></div>");
-            block.css({
-                width: blockWidth + "px",
-                height: rowHeight + "px",
-                left: actX + "px",
-                top: actY + "px",
-                // background: `linear-gradient(90deg, ${continentColors[continent]} 0%, ${continentColors[continent]} ${rankPercentage}%, ${signalColors[continent]} 100%`
-                background: color
+// ///////////////////////////////////////////////////////////////////////
+// function for creating a divs for each property for each country that can be used for all function of allchart
+// ///////////////////////////////////////////////////////////////////////
 
-            });
-            stage.append(block);
+let valueRect;
 
-            actX += blockWidth;
+function createDivsForChart() {
+  console.log(countryData.length);
+
+  $("#renderer").addClass("allChart");
+
+  let countryDataGrouped = gmynd.groupData(countryData, "Country");
+  countryPropertyDivs = {};
+  for (let country in countryDataGrouped) {
+    if (countryDataGrouped[country].length == 18) {
+      countryPropertyDivs[country] = {};
+    } else {
+      // delete all entries with this country name from countryData
+      countryData = countryData.filter(function (ele) {
+        return ele.Country != country;
+      });
+    }
+  }
+  console.log(countryData.length);
+  console.log("countryPropertyDivs", countryPropertyDivs);
+
+  // loop over the countries
+  for (let country in countryPropertyDivs) {
+    // continentCountry.forEach((country) => {
+    // console.log(country);
+
+    countryPropertyDivs[country] = {};
+
+    // create container div
+    let container = $("<div></div>");
+    container.data("country", country);
+    container.addClass("container-rectangle");
+    countryPropertyDivs[country].container = container;
+    $("#renderer").append(container);
+
+    // create 12 divs for each country for each property
+    properties.forEach((property) => {
+      let div = $("<div></div>");
+      div.addClass("property-rectangle");
+      div.data("country", country);
+      div.data("property", property);
+
+      countryPropertyDivs[country][property] = div;
+
+      div.css({
+        position: "absolute",
+        width: "50px",
+        height: "5px",
+        background: colorMapping[property],
+      });
+
+
+      // Append the country div to the body
+      container.append(div);
+      // console.log("div", div);
+    });
+  }
+}
+
+// ///////////////////////////////////////////////////////////////////////
+// function for creating the allchart 
+// ///////////////////////////////////////////////////////////////////////
+
+function drawPropertyCharts(dataset) {
+
+  let heightIndex = 0;
+  dataset.forEach((data) => {
+    const containerRect = countryPropertyDivs[data.Country].container;
+
+    // let countryDiv = $("<div></div>");
+    const recHeight = Math.floor((stageHeight - 100 * 2) / dataset.length / 2);
+    // ((stageWidth - paddingLeft * 2) / sortedData.length / 2);
+    const yPos = heightIndex * recHeight * 2 + 100 + recHeight / stageHeight;
+    // (index * barWidth * 2) + 30 + barWidth / 2;
+
+    containerRect.css({
+      left: 30 + "px",
+      top: yPos + 130 + "px",
+    });
+
+    let xPos = 0;
+
+    // Iterate over each property of the data object
+    properties.forEach((prop) => {
+      if (countryPropertyDivs[data.Country]) {
+        let valueRect = countryPropertyDivs[data.Country][prop];
+        // console.log("b", valueRect);
+
+        const value = data[prop];
+        const recWidth = value * 15 + "px";
+
+        // Set the width of the valueRect based on the property value
+        valueRect.css({
+          width: recWidth,
+          height: recHeight + "px",
+          left: xPos + "px",
+          //top: yPos + "px",
         });
 
-        actIndex += count;
-        actY += rowHeight;
+        valueRect.data("xPos", xPos);
+
+
+        // Update the x position for the next valueRect
+        xPos += parseInt(recWidth);
+      }
     });
+
+    heightIndex++;
+  });
 }
+
+// ///////////////////////////////////////////////////////////////////////
+// function for sorting allchart for groups of properties
+// ///////////////////////////////////////////////////////////////////////
+
+function showGroup(groupName) {
+  const propertiesToShow = propertyGroups[groupName];
+  const propertyPositions = {};
+  propertiesToShow.forEach((property, index) => {
+    propertyPositions[property] = index * ((stageWidth / propertiesToShow.length) / 2);
+  });
+
+  for (const countryName in countryPropertyDivs) {
+    properties.forEach((property) => {
+      let rectangle = countryPropertyDivs[countryName][property];
+      if (propertiesToShow.includes(property)) {
+        let xPos = propertyPositions[property] + paddingLeft;
+        propertyLeftPositions[property] = xPos;
+
+        rectangle.css({
+          left: xPos + "px",
+          transition: "left 0.5s ease-out",
+          display: "block",
+        });
+      } else {
+        rectangle.css({
+          display: "none",
+        });
+      }
+    });
+  }
+}
+
+// ///////////////////////////////////////////////////////////////////////
+// function for sorting allchart for sorting for one property
+// ///////////////////////////////////////////////////////////////////////
+
+function sortByProperty(property) {
+  $("renderer").addClass("allChart");
+  console.log(`Sorting by ${property}`);
+
+
+  // let sortedData = datasets[currentDatasetIndex].sort((a, b) => b[property] - a[property]);
+  let sortedData = [...datasets[currentDatasetIndex]].sort((a, b) => b[property] - a[property]);
+
+  drawPropertyCharts(sortedData);
+  console.log("sortedData", sortedData);
+}
+
+$(document).ready(function () {
+  $("button[data-property]").click(function () {
+    let property = $(this).data("property");
+    sortByProperty(property);
+  });
+});

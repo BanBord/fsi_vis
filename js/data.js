@@ -104,7 +104,7 @@ const continentCountry = [
       "continent": "Asia"
     },
     {
-      "name": "Bolivia (Plurinational State of)",
+      "name": "Bolivia",
       "continent": "Americas"
     },
     {
@@ -148,7 +148,7 @@ const continentCountry = [
       "continent": "Africa"
     },
     {
-      "name": "Cabo Verde",
+      "name": "Cape Verde",
       "continent": "Africa"
     },
     {
@@ -200,7 +200,7 @@ const continentCountry = [
       "continent": "Africa"
     },
     {
-      "name": "Congo",
+      "name": "Congo Republic",
       "continent": "Africa"
     },
     {
@@ -234,6 +234,10 @@ const continentCountry = [
     {
       "name": "Cyprus",
       "continent": "Asia"
+    },
+    {
+      "name": "Czechia",
+      "continent": "Europe"
     },
     {
       "name": "Czechia",
@@ -280,8 +284,12 @@ const continentCountry = [
       "continent": "Europe"
     },
     {
-      "name": "Eswatini",
+      "name": "Swaziland",
       "continent": "Africa"
+    },
+    {
+      "name": "Eswatini",
+      "continet": "Africa"
     },
     {
       "name": "Ethiopia",
@@ -376,7 +384,7 @@ const continentCountry = [
       "continent": "Africa"
     },
     {
-      "name": "Guinea-Bissau",
+      "name": "Guinea Bissau",
       "continent": "Africa"
     },
     {
@@ -420,7 +428,7 @@ const continentCountry = [
       "continent": "Asia"
     },
     {
-      "name": "Iran (Islamic Republic of)",
+      "name": "Iran",
       "continent": "Asia"
     },
     {
@@ -436,7 +444,7 @@ const continentCountry = [
       "continent": "Europe"
     },
     {
-      "name": "Israel",
+      "name": "Israel and West Bank",
       "continent": "Asia"
     },
     {
@@ -472,12 +480,12 @@ const continentCountry = [
       "continent": "Oceania"
     },
     {
-      "name": "Korea (Democratic People's Republic of)",
+      "name": "North Korea",
       "continent": "Asia"
     },
     {
-      "name": "Korea",
-      "continent": "ISO 3166-2:KR"
+      "name": "South Korea",
+      "continent": "Asia"
     },
     {
       "name": "Kuwait",
@@ -488,7 +496,11 @@ const continentCountry = [
       "continent": "Asia"
     },
     {
-      "name": "Lao People's Democratic Republic",
+      "name": "Kyrgyzstan",
+      "continent": "Asia"
+    },
+    {
+      "name": "Laos",
       "continent": "Asia"
     },
     {
@@ -576,7 +588,7 @@ const continentCountry = [
       "continent": "Americas"
     },
     {
-      "name": "Micronesia (Federated States of)",
+      "name": "Micronesia",
       "continent": "Oceania"
     },
     {
@@ -656,8 +668,12 @@ const continentCountry = [
       "continent": "Oceania"
     },
     {
-      "name": "North Macedonia",
+      "name": "Macedonia",
       "continent": "Europe"
+    },
+    {
+      "name": "North Macedonia",
+      "continet": "Europa"
     },
     {
       "name": "Northern Mariana Islands",
@@ -732,7 +748,7 @@ const continentCountry = [
       "continent": "Europe"
     },
     {
-      "name": "Russian Federation",
+      "name": "Russia",
       "continent": "Europe"
     },
     {
@@ -745,7 +761,7 @@ const continentCountry = [
     },
     {
       "name": "Saint Helena",
-      "continent": "ISO 3166-2:SH"
+      "continent": "Africa"
     },
     {
       "name": "Saint Kitts and Nevis",
@@ -869,7 +885,7 @@ const continentCountry = [
     },
     {
       "name": "Taiwan",
-      "continent": "ISO 3166-2:TW"
+      "continent": "Asia"
     },
     {
       "name": "Tajikistan",
@@ -960,11 +976,11 @@ const continentCountry = [
       "continent": "Oceania"
     },
     {
-      "name": "Venezuela (Bolivarian Republic of)",
+      "name": "Venezuela",
       "continent": "Americas"
     },
     {
-      "name": "Viet Nam",
+      "name": "Vietnam",
       "continent": "Asia"
     },
     {
@@ -997,7 +1013,7 @@ const continentCountry = [
     }
 ]
 
-const countryData = [
+let countryData = [
   {
     "Country": "Sudan",
     "Year": 2006,
@@ -1485,7 +1501,7 @@ const countryData = [
     "Total": "91,8"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2006,
     "Rank": 28,
     "Security Apparatus": "8,3",
@@ -2997,7 +3013,7 @@ const countryData = [
     "Total": 51
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2006,
     "Rank": 112,
     "Security Apparatus": 2,
@@ -3123,7 +3139,7 @@ const countryData = [
     "Total": "41,9"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2006,
     "Rank": 119,
     "Security Apparatus": 2,
@@ -4365,7 +4381,7 @@ const countryData = [
     "Total": "88,2"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2007,
     "Rank": 41,
     "Security Apparatus": "7,9",
@@ -6165,7 +6181,7 @@ const countryData = [
     "Total": "50,5"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2007,
     "Rank": 141,
     "Security Apparatus": 2,
@@ -6291,7 +6307,7 @@ const countryData = [
     "Total": "42,7"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2007,
     "Rank": 148,
     "Security Apparatus": 2,
@@ -7497,7 +7513,7 @@ const countryData = [
     "Total": "88,9"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2008,
     "Rank": 39,
     "Security Apparatus": "8,1",
@@ -9351,7 +9367,7 @@ const countryData = [
     "Total": "50,9"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2008,
     "Rank": 142,
     "Security Apparatus": 2,
@@ -9477,7 +9493,7 @@ const countryData = [
     "Total": "42,4"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2008,
     "Rank": 149,
     "Security Apparatus": 2,
@@ -10737,7 +10753,7 @@ const countryData = [
     "Total": "89,2"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2009,
     "Rank": 42,
     "Security Apparatus": "7,7",
@@ -12573,7 +12589,7 @@ const countryData = [
     "Total": "48,8"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2009,
     "Rank": 144,
     "Security Apparatus": 2,
@@ -12717,7 +12733,7 @@ const countryData = [
     "Total": "43,3"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2009,
     "Rank": 152,
     "Security Apparatus": 2,
@@ -13977,7 +13993,7 @@ const countryData = [
     "Total": "88,5"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2010,
     "Rank": 45,
     "Security Apparatus": "7,6",
@@ -15741,7 +15757,7 @@ const countryData = [
     "Total": 49
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2010,
     "Rank": 143,
     "Security Apparatus": "2,1",
@@ -15903,7 +15919,7 @@ const countryData = [
     "Total": "43,5"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2010,
     "Rank": 152,
     "Security Apparatus": "2,1",
@@ -16911,7 +16927,7 @@ const countryData = [
     "Total": "92,1"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2011,
     "Rank": 31,
     "Security Apparatus": 8,
@@ -18945,7 +18961,7 @@ const countryData = [
     "Total": "47,4"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2011,
     "Rank": 144,
     "Security Apparatus": "2,3",
@@ -19089,7 +19105,7 @@ const countryData = [
     "Total": "43,1"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2011,
     "Rank": 152,
     "Security Apparatus": "2,1",
@@ -20313,7 +20329,7 @@ const countryData = [
     "Total": "87,4"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2012,
     "Rank": 41,
     "Security Apparatus": "7,4",
@@ -22149,7 +22165,7 @@ const countryData = [
     "Total": "47,5"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2012,
     "Rank": 144,
     "Security Apparatus": "2,6",
@@ -22347,7 +22363,7 @@ const countryData = [
     "Total": "40,5"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2012,
     "Rank": 155,
     "Security Apparatus": "2,1",
@@ -23607,7 +23623,7 @@ const countryData = [
     "Total": "86,1"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2013,
     "Rank": 48,
     "Security Apparatus": "7,4",
@@ -25371,7 +25387,7 @@ const countryData = [
     "Total": "45,3"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2013,
     "Rank": 145,
     "Security Apparatus": "2,3",
@@ -25515,7 +25531,7 @@ const countryData = [
     "Total": "40,9"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2013,
     "Rank": 154,
     "Security Apparatus": "2,1",
@@ -26991,7 +27007,7 @@ const countryData = [
     "Total": "84,1"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2014,
     "Rank": 58,
     "Security Apparatus": "7,1",
@@ -28575,7 +28591,7 @@ const countryData = [
     "Total": "46,1"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2014,
     "Rank": 146,
     "Security Apparatus": "2,6",
@@ -28719,7 +28735,7 @@ const countryData = [
     "Total": 42
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2014,
     "Rank": 154,
     "Security Apparatus": "2,3",
@@ -30267,7 +30283,7 @@ const countryData = [
     "Total": "82,5"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2015,
     "Rank": 62,
     "Security Apparatus": "6,8",
@@ -31833,7 +31849,7 @@ const countryData = [
     "Total": 43
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2015,
     "Rank": 149,
     "Security Apparatus": "2,3",
@@ -31923,7 +31939,7 @@ const countryData = [
     "Total": "39,8"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2015,
     "Rank": 154,
     "Security Apparatus": "2,6",
@@ -33507,7 +33523,7 @@ const countryData = [
     "Total": "81,6"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2016,
     "Rank": 64,
     "Security Apparatus": "6,5",
@@ -34947,7 +34963,7 @@ const countryData = [
     "Total": "45,1"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2016,
     "Rank": 144,
     "Security Apparatus": 2,
@@ -35073,7 +35089,7 @@ const countryData = [
     "Total": "41,9"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2016,
     "Rank": 151,
     "Security Apparatus": "2,3",
@@ -36729,7 +36745,7 @@ const countryData = [
     "Total": "80,8"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2017,
     "Rank": 65,
     "Security Apparatus": "6,5",
@@ -38151,7 +38167,7 @@ const countryData = [
     "Total": "44,7"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2017,
     "Rank": 144,
     "Security Apparatus": "1,8",
@@ -38295,7 +38311,7 @@ const countryData = [
     "Total": "40,8"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2017,
     "Rank": 152,
     "Security Apparatus": "2,6",
@@ -39951,7 +39967,7 @@ const countryData = [
     "Total": "79,1"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2018,
     "Rank": 65,
     "Security Apparatus": "6,8",
@@ -41409,7 +41425,7 @@ const countryData = [
     "Total": "42,8"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2018,
     "Rank": 147,
     "Security Apparatus": "2,1",
@@ -41517,7 +41533,7 @@ const countryData = [
     "Total": "39,4"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2018,
     "Rank": 153,
     "Security Apparatus": "2,9",
@@ -43191,7 +43207,7 @@ const countryData = [
     "Total": "76,5"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2019,
     "Rank": 68,
     "Security Apparatus": "6,5",
@@ -44631,7 +44647,7 @@ const countryData = [
     "Total": "40,7"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2019,
     "Rank": 148,
     "Security Apparatus": "1,8",
@@ -46485,7 +46501,7 @@ const countryData = [
     "Total": "74,6"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2020,
     "Rank": 73,
     "Security Apparatus": "6,5",
@@ -47889,7 +47905,7 @@ const countryData = [
     "Total": "38,3"
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2020,
     "Rank": 151,
     "Security Apparatus": "1,5",
@@ -47961,7 +47977,7 @@ const countryData = [
     "Total": "36,5"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2020,
     "Rank": 155,
     "Security Apparatus": "2,9",
@@ -52155,7 +52171,7 @@ const countryData = [
     "Total": "89,7"
   },
   {
-    "Country": "Côte d'Ivoire",
+    "Country": "Cote d'Ivoire",
     "Year": 2022,
     "Rank": 31,
     "Security Apparatus": "6,9",
@@ -56061,7 +56077,7 @@ const countryData = [
     "Total": "75,7"
   },
   {
-    "Country": "Kyrgyz Republic",
+    "Country": "Kyrgyzstan",
     "Year": 2023,
     "Rank": 69,
     "Security Apparatus": "5,7",
@@ -57537,7 +57553,7 @@ const countryData = [
     "Total": "40,4"
   },
   {
-    "Country": "Czech Republic",
+    "Country": "Czechia",
     "Year": 2023,
     "Rank": 151,
     "Security Apparatus": "3,2",
@@ -57609,7 +57625,7 @@ const countryData = [
     "Total": 38
   },
   {
-    "Country": "Slovak Republic",
+    "Country": "Slovakia",
     "Year": 2023,
     "Rank": 155,
     "Security Apparatus": "2,6",

@@ -1,77 +1,230 @@
-* {
+/** @format */
 
-    box-sizing: border-box; 
-    padding: 0;
-    margin: 0;
+:root {
+  --main-background-color: rgb(19, 19, 19);
+  --main-button-background-color: white;
+  --main-button-opacity: 1;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    background-color:rgb(56, 56, 56);
-    color:white;
-    font-family: 'Fira Sans', sans-serif;
+  background-color: var(--main-background-color);
+  color: white;
+  font-family: "Helvetica", sans-serif;
+}
+
+h1 {
+  color: #fff; /* Change the color as per your requirement */
+  text-align: left;
+  padding: 20px 0;
+  font-size: 50px;
+  padding-left: 30px;
+  overflow: hidden;
+}
+
+#renderer {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main-background-color);
+  /* background: red; */
+  position: relative;
+  overflow: hidden;
+}
+
+#tooltip {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid white;
+  padding: 5px;
+  z-index: 1000;
+  font-style: oblique;
+  color: black;
+  border-radius: 6px;
+}
+
+#chartSwitchButton {
+  position: absolute;
+  right: 100px;
+  top: 100px;
+  font-weight: bold;
+}
+
+#resetButton {
+  position: absolute;
+  right: 30px;
+  top: 100px;
+  font-weight: bold;
+}
+
+#selectYear {
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}
+
+#sortByCohesion {
+  position: absolute;
+  left: 30px;
+  top: 100px;
+}
+
+#sortByEconomic {
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}
+
+#sortByPolitical {
+  position: absolute;
+  left: 400px;
+  top: 100px;
+}
+
+#sortBySocial {
+  position: absolute;
+  left: 600px;
+  top: 100px;
+}
+
+#yearDropdown {
+  position: absolute;
+  left: 800px;
+  top: 100px;
+}
+#yearDropdown>option {
+  background-color: var(--main-background-color);
+  color: white;
+}
+
+.property-rectangle {
+  transition: all 0.2s ease; /* Adjust time and easing function as needed */
+}
+
+.property-rectangle:hover {
+  border: 2px solid white;
+}
+
+.rank-label {
+  text-align: left;
+  color: white;
+  padding: 2px;
+  font-size: 12px;
+  z-index: 1000;
+}
+
+.country-label {
+  text-align: left;
+  color: white;
+  padding: 2px;
+  font-size: 32px;
+  /* font-style: inherit; */
+  z-index: 1000;
+}
+
+.year-label {
+  font-size: x-small;
+}
+
+.eternalstyle {
+  position: absolute;
+  width: fit-content;
+  height: 30px;
+  right: 0px;
+  background-color: transparent;
+  opacity: var(--main-button-opacity);
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 2px solid white;
+}
+
+.eternalstyle:hover {
+  /* text-decoration:underline; */
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.buttonstyle {
+  position: absolute;
+  width: fit-content;
+  height: 30px;
+  right: 0px;
+  background-color: transparent;
+  opacity: var(--main-button-opacity);
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 2px solid white;
 }
 
 
-#renderer{
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(33, 33, 33, 0.781);
-    /* background: red; */
-    position: relative;
-    /* overflow: hidden; */
+.buttonstyle:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
 }
-.container {
-    box-sizing: border-box;
-    border: none;
-    position: absolute;
-}   
 
-.hover {
-    background-color: gray;
+.buttonstyleB {
+  display: none;
+  position: absolute;
+  width: fit-content;
+  height: 30px;
+  right: 0px;
+  background-color: transparent;
+  opacity: var(--main-button-opacity);
+  outline: none;
+  border: none;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+  border-bottom: 2px solid white;
 }
+
 .bar {
-    display: inline-block;
-    position: absolute;
+  display: inline-block;
+  position: absolute;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+  transition: all 0.5s ease; 
 }
 
-.highlight {
-    background-color: yellow; /* Or whatever color you want the highlight to be */
-}
-.table {
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    grid-gap: 5px;
-    
-}
-.cell {
-    margin: 2px
+.bar:hover {
+  border-color: white;
+  border: 2px solid white;
 }
 
-.africaGradient{
-    background: linear-gradient(90deg, rgba(74,43,140,1) 0%, rgba(30,17,56,1) 100%);
+.container-rectangle {
+  position: absolute;
+}
 
+.rectangle {
+  display: inline-block;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.buttonstyleB:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.allChart .buttonstyle {
+  display: inline-block;
+}
+
+.worldChart .buttonstyleB {
+  display: inline-block;
 }
 
 
-#hoverLabel {
-    font: size 50px;
-    position: absolute;
-    padding: 0 10px;
-    line-height: 30px;
-    pointer-events: none;
-    /* display: none; */
-    z-index: 1000;
-}
-#hoverLabel {
-    z-index: 1001;
-}
-
-#hoverLabel.active, #clickLabel.active  {
-    display: block;
-}
-
-.block {
-    position: absolute;
-    background-color: #fff;
-    border: 1px solid #000;
- }

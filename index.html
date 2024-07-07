@@ -1,26 +1,57 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>PE2424</title>
     <script src="lib/jquery.min.js"></script>
     <script src="lib/chroma.min.js"></script>
     <script src="lib/gmynd.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/buttonstyle.css" />
+  </head>
 
-<body>
-    <div id="renderer" class="m-5"></div>
-    <div id="hoverLabel"></div>
-    
-    
-    <button id="yearButton" style="position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);padding: 10px 20px;">Year</button>
-    <p id="yearLabel" style="position: fixed; top: 50px; left: 50%; transform: translateX(-50%);"></p>
+  <body>
+    <div id="renderer" class="m-5">
+    <h1>Fragile State Index, Years 2006 - 2023</h1>
+    </div>
+    <div id="stage"></div>
+    <div id="renderer" class="chart-container"></div>
+
+    <button id="chartSwitchButton" class="eternalstyle">Switch Chart</button>
+    <button id="sortByCohesion" class="buttonstyle">Cohesion Aspects</button>
+    <button id="sortByEconomic"class="buttonstyle">Economy Aspects</button>
+    <button id="sortByPolitical" class="buttonstyle" >Political Aspects</button>
+    <button id="sortBySocial" class="buttonstyle" >Social Aspects</button>
+    <button id="resetButton" class="eternalstyle">Reset</button>
+    <select id="yearDropdown" class="buttonstyle"></select>
+
+
+    <button id="saButton" class="buttonstyle" data-property="Security Apparatus">Security Apparatus</button>
+    <button id="feButton" class="buttonstyle" data-property="Factionalized Elites">Factionalized Elites</button>
+    <button id="ggButton" class="buttonstyle" data-property="Group Grievance">Group Grievance</button>
+    <button id="ecButton" class="buttonstyle" data-property="Economy">Economy</button>
+    <button id="eiButton" class="buttonstyle" data-property="Economic Inequality">Economic Inequality</button>
+    <button id="hfButton" class="buttonstyle" data-property="Human Flight and Brain Drain">Human Flight and Brain Drain</button>
+    <button id="slButton" class="buttonstyle" data-property="State Legitimacy">State Legitimacy</button>
+    <button id="psButton" class="buttonstyle" data-property="Public Services">Public Services</button>
+    <button id="hrButton" class="buttonstyle" data-property="Human Rights">Human Rights</button>
+    <button id="dpButton" class="buttonstyle" data-property="Demographic Pressures">Demographic Pressures</button>
+    <button id="riButton" class="buttonstyle" data-property="Refugees and IDPs">Refugees and IDPs</button>
+    <button id="exButton" class="buttonstyle" data-property="External Intervention">External Intervention</button>
+
+    <button id="showEurope" class="buttonstyleB" data-continent="Europe">Europe</button>
+    <button id="showAsia" class="buttonstyleB" data-continent="Asia">Asia</button>
+    <button id="showAfrica" class="buttonstyleB" data-continent="Africa">Africa</button>
+    <button id="showAmericas" class="buttonstyleB" data-continent="Americas">Americas</button>
+    <button id="showOceania" class="buttonstyleB" data-continent="Oceania">Oceania</button>
+    <!-- <button id="showAll" class="buttonstyleB" data-continent="all">Show All</button> -->
+
+    <div id="tooltip"></div>
+
     <script src="js/data.js"></script>
     <script src="js/formatdata.js"></script>
-    <script src="js/arrayalgo.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>
